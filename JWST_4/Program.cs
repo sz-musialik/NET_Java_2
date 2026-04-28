@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
+using DotNetEnv;
 
 namespace AplikacjaBazodanowa
 {
@@ -13,6 +14,8 @@ namespace AplikacjaBazodanowa
             Console.WriteLine("2 - Rekordy na podstawie typu pliku");
             Console.WriteLine("3 - [BAZA DANYCH] Pokaz posortowane rekordy (.jpg) zapisane lokalnie");
             Console.WriteLine("");
+
+            Env.Load(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", ".env"));
 
             string choice = Console.ReadLine();
 
@@ -72,6 +75,9 @@ namespace AplikacjaBazodanowa
             Console.WriteLine("\n[API] Brak danych w bazie. Pobieram dane z internetu...");
 
             string apiKey = Environment.GetEnvironmentVariable("JWST_API_KEY");
+
+            Console.WriteLine(apiKey == null ? "NULL\n" : apiKey);
+
             string page = "1";
             string perPage = "10";
             string url = $"https://api.jwstapi.com/program/id/{programId}?page={page}&perPage={perPage}";
