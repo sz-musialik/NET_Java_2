@@ -71,7 +71,7 @@ namespace AplikacjaBazodanowa
 
             Console.WriteLine("\n[API] Brak danych w bazie. Pobieram dane z internetu...");
 
-            string apiKey = REMOVED;
+            string apiKey = Environment.GetEnvironmentVariable("JWST_API_KEY");
             string page = "1";
             string perPage = "10";
             string url = $"https://api.jwstapi.com/program/id/{programId}?page={page}&perPage={perPage}";
